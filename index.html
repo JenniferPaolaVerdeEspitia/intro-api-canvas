@@ -1,109 +1,194 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Canvas API – Drawing Shapes (MDN)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Canvas API – Drawing Shapes (MDN)</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+  <style>
+    body {
+      background: #f4f6fb;
+    }
+    canvas {
+      width: 100%;
+      height: auto;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+    }
+    .card {
+      height: 100%;
+    }
+    .doc {
+      font-size: .9rem;
+      color: #555;
+    }
+  </style>
 </head>
+
 <body>
+  <header class="bg-dark text-white py-4 mb-4">
+    <div class="container">
+      <h1 class="h4 mb-1">Canvas API – Dibujando formas</h1>
+      <p class="mb-0 text-light">
+        Ejemplos basados en la documentación oficial de MDN
+      </p>
+    </div>
+  </header>
 
-<div class="container my-4">
+  <main class="container pb-5">
+    <div class="row g-4">
 
-<h2 class="text-center mb-4"></h2>
+      <!-- 1 Rectángulos -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5>1) Rectángulos</h5>
+            <p class="doc">
+              Se utilizan los métodos <code>fillRect</code>, <code>clearRect</code> y
+              <code>strokeRect</code> para dibujar, limpiar y contornear rectángulos
+              directamente sobre el canvas.
+            </p>
+            <canvas id="cv-rect" width="150" height="150"></canvas>
+          </div>
+        </div>
+      </div>
 
-<div class="row g-4">
+      <!-- 2 Triángulo -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5>2) Triángulo básico</h5>
+            <p class="doc">
+              Ejemplo de rutas (paths). Se inicia una ruta con <code>beginPath</code>,
+              se define la forma con <code>moveTo</code> y <code>lineTo</code>, y se
+              rellena usando <code>fill</code>.
+            </p>
+            <canvas id="cv-tri-basic" width="100" height="100"></canvas>
+          </div>
+        </div>
+      </div>
 
-<!-- Rectangles -->
-<div class="col-md-6">
-<div class="card">
-<div class="card-body">
-<h5>Rectángulos</h5>
-<p class="doc">
-Demuestra el uso de <b>fillRect</b>, <b>clearRect</b> y <b>strokeRect</b> para dibujar,
-borrar y trazar rectángulos directamente sobre el canvas.
-</p>
-<canvas id="rectangles" width="300" height="150"></canvas>
-</div>
-</div>
-</div>
+      <!-- 3 Dos triángulos -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5>3) Dos triángulos</h5>
+            <p class="doc">
+              Se dibujan dos triángulos: uno relleno y otro solo con contorno,
+              demostrando el uso de <code>fill</code>, <code>stroke</code> y
+              <code>closePath</code>.
+            </p>
+            <canvas id="cv-tri-2" width="150" height="150"></canvas>
+          </div>
+        </div>
+      </div>
 
-<!-- Triangles -->
-<div class="col-md-6">
-<div class="card">
-<div class="card-body">
-<h5>Triángulos (Paths)</h5>
-<p class="doc">
-Uso de <b>beginPath</b>, <b>moveTo</b> y <b>lineTo</b> para crear figuras personalizadas
-mediante trazados.
-</p>
-<canvas id="triangles" width="300" height="150"></canvas>
-</div>
-</div>
-</div>
+      <!-- 4 Carita -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5>4) Carita sonriente</h5>
+            <p class="doc">
+              Se usan arcos con <code>arc</code> para formar círculos y semicírculos,
+              creando una cara con ojos y boca usando una sola ruta.
+            </p>
+            <canvas id="cv-smiley" width="150" height="150"></canvas>
+          </div>
+        </div>
+      </div>
 
-<!-- Smiley / Pacman -->
-<div class="col-md-6">
-<div class="card">
-<div class="card-body">
-<h5>Cara sonriente / Pac-Man</h5>
-<p class="doc">
-Ejemplo de la función <b>arc()</b> para dibujar círculos y arcos. Se combinan varios
-arcos para formar una cara (ojos y boca) y una figura tipo Pac-Man.
-</p>
-<canvas id="smiley" width="150" height="150"></canvas>
-</div>
-</div>
-</div>
+      <!-- 5 Arcos -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5>5) Matriz de arcos</h5>
+            <p class="doc">
+              Mediante ciclos <code>for</code> se dibuja una cuadrícula de arcos,
+              alternando entre figuras rellenas y contorneadas, y variando los
+              ángulos de dibujo.
+            </p>
+            <canvas id="cv-arcs" width="150" height="200"></canvas>
+          </div>
+        </div>
+      </div>
 
-<!-- 12 arcs -->
-<div class="col-md-6">
-<div class="card">
-<div class="card-body">
-<h5>Doce arcos</h5>
-<p class="doc">
-Muestra cómo variar ángulos iniciales, finales y la dirección de dibujo en la función
-<b>arc()</b>.
-</p>
-<canvas id="arcs12" width="150" height="200"></canvas>
-</div>
-</div>
-</div>
+      <!-- 6 Quadratic -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5>6) Curvas Quadratic Bézier</h5>
+            <p class="doc">
+              Se emplea <code>quadraticCurveTo</code> para crear curvas suaves,
+              formando un globo de diálogo a partir de varios segmentos curvos.
+            </p>
+            <canvas id="cv-quad" width="150" height="150"></canvas>
+          </div>
+        </div>
+      </div>
 
-<!-- Quadratic -->
-<div class="col-md-6">
-<div class="card">
-<div class="card-body">
-<h5>Curvas cuadráticas (quadraticCurveTo)</h5>
-<p class="doc">
-Ejemplo de curvas Bézier cuadráticas para formar una figura tipo globo de diálogo.
-</p>
-<canvas id="quadratic" width="150" height="150"></canvas>
-</div>
-</div>
-</div>
+      <!-- 7 Cubic -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5>7) Curvas Cubic Bézier</h5>
+            <p class="doc">
+              Usando <code>bezierCurveTo</code> se construye una figura más compleja
+              (un corazón), controlando la forma mediante puntos de control.
+            </p>
+            <canvas id="cv-heart" width="150" height="150"></canvas>
+          </div>
+        </div>
+      </div>
 
-<!-- Bezier -->
-<div class="col-md-6">
-<div class="card">
-<div class="card-body">
-<h5>Curvas Bézier (Corazón)</h5>
-<p class="doc">
-Uso de <b>bezierCurveTo</b> para crear curvas suaves complejas. En este ejemplo se
-construye un corazón.
-</p>
-<canvas id="bezier" width="150" height="150"></canvas>
-</div>
-</div>
-</div>
+      <!-- 8 Combinaciones -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5>8) Combinación de formas</h5>
+            <p class="doc">
+              Ejemplo que mezcla rectángulos redondeados, arcos y curvas Bézier
+              para construir una figura más elaborada a partir de formas básicas.
+            </p>
+            <canvas id="cv-combo" width="150" height="150"></canvas>
+          </div>
+        </div>
+      </div>
 
-</div>
-</div>
+      <!-- 9 Path2D -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5>9) Path2D</h5>
+            <p class="doc">
+              Se crean objetos <code>Path2D</code> independientes para reutilizar
+              rutas y dibujarlas con <code>stroke</code> y <code>fill</code>.
+            </p>
+            <canvas id="cv-path2d" width="130" height="100"></canvas>
+          </div>
+        </div>
+      </div>
 
-<script src="js/main.js"></script>
+      <!-- 10 SVG Path -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5>10) Path2D con SVG Path</h5>
+            <p class="doc">
+              Se utiliza un string con sintaxis SVG para crear una ruta mediante
+              <code>Path2D</code>, demostrando la compatibilidad entre Canvas y SVG.
+            </p>
+            <canvas id="cv-svgpath" width="110" height="110"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
-
-<!-- actualización GitHub Pages -->
