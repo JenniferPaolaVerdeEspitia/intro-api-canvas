@@ -1,0 +1,19 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fondo blanco de la página */
+body {
+  background: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Canvas en esquina superior izquierda */
+canvas {
+  background: #e0e0e0;     /* gris claro */
+  border: 2px solid #000;  /* borde negro */
+  display: block;
+}
